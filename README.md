@@ -186,10 +186,10 @@ Partitions are like tags on different nodes within Kaya that mark them as approp
 | long       | 7-00:00:00     | yes                        | For very long tasks (loop of TopHat read mapping) |
 | gpu        | 3-00:00:00     | yes                        | For GPU intensive tasks                           |
 | test       | 00:15:00       | yes                        | For very short test of programs or scripts        |
-| ondemand   | 04:00:00       | yes                        | For short programs but need longer than 15 mins   |
+| ondemand   | 04:00:00       | yes                        | For interactive sessions via a GUI |
 | peb        | 14-00:00:00    | no - ListerLab exclusive   | For very long tasks (like interactive R sessions) |
 
-### 3. Interactive sessions
+### 3. Interactive command-line sessions
 
 To test and develop your code/pipeline/environment, it's benefitial to request an interactive session. You can do so by running
 
@@ -209,6 +209,10 @@ to request a `1h` session with `4 cores` and `20GB of RAM` in total.
 __IMPORTANTLY__ exit the session by typing `exit` in the terminal to free up resources ❗
 
 __IMPORTANTLY__ Unlike the old PEB servers, this interactive session will wall off resources so even if you are not using them, no one else can, so be polite and exit when you don't need it ❗
+
+### 4. Interactive command-line sessions
+
+Using the ondemand partition, you can go to this website https://ondemand.hpc.uwa.edu.au/ and login with your username and password in order to launch an up to 4 hour long session in which you can launch a graphical desktop and from there launch Jupyter notebooks. 
 
 ## Examples
 
