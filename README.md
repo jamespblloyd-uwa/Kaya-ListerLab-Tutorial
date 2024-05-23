@@ -208,6 +208,8 @@ to request a `1h` session with `4 cores` and `20GB of RAM` in total.
 
 __IMPORTANTLY__ exit the session by typing `exit` in the terminal to free up resources ❗
 
+If you become disconnected and want to rejoin your interactive command-line session, you can find out the job ID, such as `449157.0`, with `sacct`. Once you know it, you can rejoin by using `sattach` with the job ID, such as this: `sattach 449157.0`.
+
 __IMPORTANTLY__ Unlike the old PEB servers, this interactive session will wall off resources so even if you are not using them, no one else can, so be polite and exit when you don't need it ❗
 
 ### 4. Interactive command-line sessions
