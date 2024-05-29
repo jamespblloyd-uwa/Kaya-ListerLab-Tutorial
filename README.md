@@ -149,7 +149,7 @@ You can use either [Filezilla](https://filezilla-project.org) or good old `scp` 
  To check the queue for the ListerLab server, use the command
  
  ```bash
- squeue -p peb
+ squeue -p ll
  ```
  
  or for you own jobs
@@ -158,7 +158,7 @@ You can use either [Filezilla](https://filezilla-project.org) or good old `scp` 
  squeue -u <username>
  ```
  
- __Note__ at the time of writing, the ListerLab server has the partion variable `peb` assigned. This will change in the future and this Tutorial needs to be updated.
+ __Note__ at the time of writing, the ListerLab server has the partion variable `ll` assigned. This was `peb` but its useage is being phased out.
  
  
  Check progress on your jobs
@@ -173,7 +173,7 @@ To check the the jobs over the last week and see the memory usage (maxRSS) in GB
 sacct --starttime $(date -d "1 week ago" +%Y-%m-%d) --endtime $(date +%Y-%m-%d) --format=JobID,JobName,State,Elapsed,MaxRSS | awk '{ if ($5 ~ /^[0-9]+K$/) { sub(/K$/, "", $5); printf "%s %s %s %s %.2fGB\n", $1, $2, $3, $4, $5/1024/1024 } else { print } }'
 ```
 
-In case the ListerLab (PEB) node is fully utilized, you'll also have access to common Kaya nodes. To list them run
+In case the ListerLab (LL; formamly PEB) node is fully utilized, you'll also have access to common Kaya nodes. To list them run
 
 ```bash
 sinfo --noheader --format="%P"
@@ -187,7 +187,7 @@ Partitions are like tags on different nodes within Kaya that mark them as approp
 | gpu        | 3-00:00:00     | yes                        | For GPU intensive tasks                           |
 | test       | 00:15:00       | yes                        | For very short test of programs or scripts        |
 | ondemand   | 04:00:00       | yes                        | For interactive sessions via a GUI |
-| peb        | 14-00:00:00    | no - ListerLab exclusive   | For very long tasks (like interactive R sessions) |
+| ll        | 14-00:00:00    | no - ListerLab exclusive   | For very long tasks (like interactive R sessions) |
 
 ### 3. Interactive command-line sessions
 
@@ -197,7 +197,7 @@ To test and develop your code/pipeline/environment, it's benefitial to request a
 srun \
 --time=1:00:00 \
 --account=<username> \
---partition=peb \
+--partition=ll \
 --nodes=1 \
 --ntasks=1 \
 --cpus-per-task=4 \
@@ -233,7 +233,7 @@ The way you can specify this is by adding the following lines to your SLURM scri
 #!/bin/bash --login
 
 #SBATCH --job-name=<map_da_reads>
-#SBATCH --partition=peb
+#SBATCH --partition=ll
 #SBATCH --mem-per-cpu=10G
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -277,7 +277,7 @@ Now let's run some SLURM scripts and change them so you can see how they work.
 ### 3. Launch a SLURM script
 
 ```bash
-sbatch -p peb SLURM_scripts/SLURM_tutorial_fastp.sh
+sbatch -p ll SLURM_scripts/SLURM_tutorial_fastp.sh
 ```
 
 ### 4. Cancel SLURM scripts that have an issue or that are in the queue
@@ -295,4 +295,4 @@ Contributions to this tutorial are welcome! If you find any issues or have sugge
 
 This project is licensed under the [License Name] - add a link to the license file if applicable. 
 
-Tutorial intitally written by Christian Pflueger. Some edits from James Lloyd. 
+Tutorial intitally written by Christian Pflueger, with edits from James Lloyd. 
