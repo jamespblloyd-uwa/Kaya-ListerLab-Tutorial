@@ -170,7 +170,7 @@ You can use either [Filezilla](https://filezilla-project.org) or good old `scp` 
 To check the the jobs over the last week and see the memory usage (maxRSS) in GB use 
 
 ```bash
-sacct --starttime $(date -d "1 week ago" +%Y-%m-%d) --endtime $(date +%Y-%m-%d) --format=JobID,JobName,State,Elapsed,MaxRSS | awk '{ if ($5 ~ /^[0-9]+K$/) { sub(/K$/, "", $5); printf "%s %s %s %s %.2fGB\n", $1, $2, $3, $4, $5/1024/1024 } else { print } }'
+sacct --starttime $(date -d "1 week ago" +%Y-%m-%d) --format=JobID,JobName,State,Elapsed,MaxRSS | awk '{ if ($5 ~ /^[0-9]+K$/) { sub(/K$/, "", $5); printf "%s %s %s %s %.2fGB\n", $1, $2, $3, $4, $5/1024/1024 } else { print } }'
 ```
 
 In case the ListerLab (LL; formamly PEB) node is fully utilized, you'll also have access to common Kaya nodes. To list them run
@@ -186,7 +186,6 @@ Partitions are like tags on different nodes within Kaya that mark them as approp
 | long       | 7-00:00:00     | yes                        | For very long tasks (loop of TopHat read mapping) |
 | gpu        | 3-00:00:00     | yes                        | For GPU intensive tasks                           |
 | test       | 00:15:00       | yes                        | For very short test of programs or scripts        |
-| ondemand   | 04:00:00       | yes                        | For interactive sessions via a GUI |
 | ll        | 14-00:00:00    | no - ListerLab exclusive   | For very long tasks (like interactive R sessions) |
 
 ### 3. Interactive command-line sessions
